@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/niteshpurohit/ncaptcha#readme",
   "dependencies": {
-    "canvas": "3.0.1",
+    "canvas": "3.1.0",
     "crypto": "^1.0.1"
   },
   "devDependencies": {
