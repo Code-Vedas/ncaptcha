@@ -227,6 +227,12 @@ test('createChallenge validates option ranges and provided text length', () => {
   assert.throws(() => createChallenge({ secret: SECRET, width: 199 }), /width must be an integer between 200 and 1000/);
   assert.throws(() => createChallenge({ secret: SECRET, height: 70 }), /height must be an integer between 80 and 400/);
   assert.throws(() => createChallenge({ secret: SECRET, ttlSeconds: 20 }), /ttlSeconds must be an integer between 30 and 3600/);
+  assert.throws(
+    () => createChallenge({ secret: SECRET, distortion: 'extreme' as unknown as 'medium' }),
+    /distortion must be one of/,
+  );
+  assert.throws(() => createChallenge({ secret: SECRET, noise: 6 }), /noise must be an integer between 0 and 5/);
+  assert.throws(() => createChallenge({ secret: SECRET, noise: -1 }), /noise must be an integer between 0 and 5/);
   assert.throws(() => createChallenge({ secret: SECRET, length: 6, text: 'AB12' }), /Provided text must match the configured length/);
 });
 

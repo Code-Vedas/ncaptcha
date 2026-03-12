@@ -352,6 +352,14 @@ export function createChallenge(options: CaptchaOptions = {}): Challenge {
     throw new Error('ttlSeconds must be an integer between 30 and 3600.');
   }
 
+  if (!(distortion in DISTORTION_PRESETS)) {
+    throw new Error("distortion must be one of: 'low', 'medium', 'high'.");
+  }
+
+  if (!Number.isInteger(noise) || noise < 0 || noise > 5) {
+    throw new Error('noise must be an integer between 0 and 5.');
+  }
+
   const charset = buildAllowedCharset(options.charset ?? DEFAULT_CHARSET, options.excludeChars ?? DEFAULT_EXCLUDE);
   const answer = options.text ? normalizeAnswer(options.text) : generateText(length, charset);
 

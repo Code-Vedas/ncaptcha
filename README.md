@@ -62,7 +62,7 @@ Selected options:
 - `charset?: string`
 - `excludeChars?: string` (default excludes ambiguous characters)
 - `distortion?: 'low' | 'medium' | 'high'` (default `medium`)
-- `noise?: number` (default `1`)
+- `noise?: number` (integer `0` to `5`, default `1`)
 
 ### `verifyChallenge(input)`
 
