@@ -112,17 +112,23 @@ function resolveSecret(secret?: string): string {
 
 function base64UrlEncode(input: Buffer | string): string {
   const buffer = Buffer.isBuffer(input) ? input : Buffer.from(input);
-  return buffer
-    .toString('base64')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/g, '');
+  const base64 = buffer.toString('base64');
+  const withoutPadding = stripTrailingEquals(base64);
+  return withoutPadding.split('+').join('-').split('/').join('_');
 }
 
 function base64UrlDecode(input: string): Buffer {
-  const normalized = input.replace(/-/g, '+').replace(/_/g, '/');
+  const normalized = input.split('-').join('+').split('_').join('/');
   const padded = normalized + '='.repeat((4 - (normalized.length % 4)) % 4);
   return Buffer.from(padded, 'base64');
+}
+
+function stripTrailingEquals(value: string): string {
+  let end = value.length;
+  while (end > 0 && value.charCodeAt(end - 1) === 61) {
+    end -= 1;
+  }
+  return value.slice(0, end);
 }
 
 function hmacSha256(input: string, secret: string): Buffer {
