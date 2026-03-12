@@ -2,9 +2,9 @@
 
 All notable changes to `ncaptcha-api` are documented in this file.
 
-## [2.0.0](https://github.com/code-vedas/ncaptcha/tree/v2.0.0) (2026-03-11)
+## [2.0.0](https://github.com/Code-Vedas/ncaptcha/tree/v2.0.0) (2026-03-11)
 
-[Full Changelog](https://github.com/code-vedas/ncaptcha/compare/07488ec675e711578218b080504dcac5580ddb8f...v2.0.0)
+[Full Changelog](https://github.com/Code-Vedas/ncaptcha/compare/07488ec675e711578218b080504dcac5580ddb8f...v2.0.0)
 
 ### Added
 - Modern TypeScript + ESM package structure targeting Node.js 20+.
