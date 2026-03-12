@@ -130,6 +130,25 @@ test('verifyChallenge fails with invalid-signature for tampered signature', () =
   assert.deepEqual(result, { ok: false, reason: 'invalid-signature' });
 });
 
+test('verifyChallenge fails with invalid-signature for short signature', () => {
+  const challenge = createChallenge({
+    secret: SECRET,
+    text: 'YU54NM',
+    length: 6,
+  });
+
+  const [payloadSegment] = challenge.token.split('.');
+  const tamperedToken = `${payloadSegment}.x`;
+
+  const result = verifyChallenge({
+    secret: SECRET,
+    token: tamperedToken,
+    answer: 'YU54NM',
+  });
+
+  assert.deepEqual(result, { ok: false, reason: 'invalid-signature' });
+});
+
 test('verifyChallenge fails with malformed token', () => {
   const result = verifyChallenge({
     secret: SECRET,
@@ -240,7 +259,7 @@ test('verifyChallenge detects malformed payload and accepts Date now input', () 
   });
   assert.deepEqual(malformedShapeResult, { ok: false, reason: 'malformed-token' });
 
-  const invalidJsonToken = `${Buffer.from('{\"v\":', 'utf8').toString('base64url')}.${signatureSegment}`;
+  const invalidJsonToken = `${Buffer.from('{"v":', 'utf8').toString('base64url')}.${signatureSegment}`;
   const invalidJsonResult = verifyChallenge({
     secret: SECRET,
     token: invalidJsonToken,

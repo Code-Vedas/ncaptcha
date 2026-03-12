@@ -25,6 +25,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npm run lint
       - run: npm run coverage
         env:
           NCAPTCHA_SECRET: ${{ secrets.NCAPTCHA_SECRET }}
