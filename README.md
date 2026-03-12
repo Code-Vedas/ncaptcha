@@ -12,7 +12,7 @@ Modern captcha generation for Node.js APIs with stateless signed verification.
 ## Install
 
 ```bash
-npm install ncaptcha-api
+yarn add ncaptcha-api
 ```
 
 ## Required Secret
@@ -134,6 +134,8 @@ v2 is a breaking release:
 ## Development
 
 ```bash
-npm test
-npm run coverage
+corepack enable
+yarn install --immutable
+yarn test
+yarn coverage
 ```

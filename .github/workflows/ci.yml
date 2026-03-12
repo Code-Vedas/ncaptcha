@@ -17,9 +17,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run coverage
+      - run: corepack enable
+      - run: corepack prepare yarn@4.13.0 --activate
+      - run: corepack yarn --version
+      - run: corepack yarn install --immutable
+      - run: corepack yarn lint
+      - run: corepack yarn coverage
         env:
           NCAPTCHA_SECRET: ${{ secrets.NCAPTCHA_SECRET }}
