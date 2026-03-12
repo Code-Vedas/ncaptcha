@@ -44,7 +44,7 @@ export interface VerifyInput {
 
 export interface VerifyResult {
   ok: boolean;
-  reason?: 'expired' | 'invalid-signature' | 'mismatch' | 'malformed-token';
+  reason?: 'expired' | 'invalid-signature' | 'mismatch' | 'malformed-token' | 'replayed';
 }
 
 interface DistortionConfig {
@@ -57,7 +57,7 @@ interface DistortionConfig {
   speckleDensity: number;
 }
 
-interface TokenPayload {
+export interface TokenPayload {
   v: 2;
   iat: number;
   exp: number;
@@ -416,7 +416,7 @@ export function verifyChallenge(input: VerifyInput): VerifyResult {
   }
 
   if (input.isReplay?.(parsedToken.payload.id, parsedToken.payload)) {
-    return { ok: false, reason: 'mismatch' };
+    return { ok: false, reason: 'replayed' };
   }
 
   const actualAnswerHash = computeAnswerHash(

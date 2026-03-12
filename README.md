@@ -69,7 +69,7 @@ Selected options:
 Returns:
 
 - `{ ok: true }`
-- `{ ok: false, reason: 'expired' | 'invalid-signature' | 'mismatch' | 'malformed-token' }`
+- `{ ok: false, reason: 'expired' | 'invalid-signature' | 'mismatch' | 'malformed-token' | 'replayed' }`
 
 Input fields:
 
@@ -77,7 +77,7 @@ Input fields:
 - `answer: string`
 - `secret?: string`
 - `now?: number | Date` (for deterministic tests)
-- `isReplay?: (tokenId, payload) => boolean` (optional app-level replay hook)
+- `isReplay?: (tokenId, payload) => boolean` (optional app-level replay hook, returns `replayed` when true)
 
 ## Security Notes
 

@@ -173,7 +173,7 @@ test('verifyChallenge supports replay hook for application-level replay checks',
     isReplay: () => true,
   });
 
-  assert.deepEqual(replayed, { ok: false, reason: 'mismatch' });
+  assert.deepEqual(replayed, { ok: false, reason: 'replayed' });
 });
 
 test('generated challenges are unique and verifiable with their own answers', () => {
