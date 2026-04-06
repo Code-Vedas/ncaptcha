@@ -1,0 +1,14 @@
+{
+  "name": "ncaptcha-example",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "ncaptcha-api": "file:.."
+  }
+}
